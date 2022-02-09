@@ -141,7 +141,7 @@ def slayer():
 def compile():
     print(f"{bblue}[+]{bos} Compiling...")
     application_name = get_random_string()
-    os.system(f"x86_64-w64-mingw32-g++ -o {application_name}.exe tornado.cpp -static-libstdc++ -static-libgcc -mwindows")
+    os.system(f"x86_64-w64-mingw32-g++ -o {application_name}.exe tornado.cpp -static-libstdc++ -static-libgcc")
     time.sleep(1)
 
 def cya():
