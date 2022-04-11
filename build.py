@@ -14,7 +14,7 @@ bblue = Fore.BLUE + Style.BRIGHT
 bos = "\033[1;37m"
 
 def download_tor():
-    tor_url = 'https://www.torproject.org/dist/torbrowser/11.0.4/tor-win32-0.4.6.9.zip'
+    tor_url = 'https://www.torproject.org/dist/torbrowser/11.0.10/tor-win32-0.4.6.10.zip'
     wget.download(tor_url, out='C:')
     print(f"\n{bblue}[+]{bos} Tor is downloaded in C:\\ directory.")
     with zipfile.ZipFile('C:\\tor-win32-0.4.6.9.zip', 'r') as tor:
