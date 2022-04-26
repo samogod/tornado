@@ -1,3 +1,0 @@
-wget==3.2
-colorama==0.4.3
-stem==1.8.0
