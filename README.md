@@ -4,125 +4,120 @@
     <img src="images/twister.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Anonymously Reverse shell over Tor Network using Hidden Services without portfortwarding</h3>
+  <h3 align="center">tornado</h3>
 
   <p align="center">
-    Tor ağı ile Dark Web servislerini kullanarak anonim biçimde port yönlendirmeden ters bağlantı     
+    anonymously reverse shell over onion network using hidden services without portfortwarding     
     <br />
-    <a href="https://github.com/samet-g/tornado"><strong>Explore the docs » Projeyi keşfet</strong></a>
+    <a href="https://github.com/samet-g/tornado"><strong>Explore the docs</strong></a>
     <br />
-    <a href="https://www.gnu.org/licenses/gpl-3.0.en.html"></a>
-      <img src="https://img.shields.io/badge/license-GPL3-_red.svg"></a>
+    fully undetectable reverse shell</a>
+    ·
+    <a href="https://github.com/samet-g/niku">View Demo</a>
+    ·
+    bulletproof anonymity</a>  
+    
+  </p>
+</div>
   </p>
 </p>
 
+---
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/81412659/165843920-3c65a405-903b-40c1-b6ca-4fa62dea8d75.png">
+</div>
+
 <details open="open">
-  <summary>Table of Contents / İçerik Bölümü</summary>
+  <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project--proje-hakkında">About the Project / Proje Hakkında</a>
-      <ul>
-        <li><a href="#built-with--kullanılanlar">Built With / Kullanılanlar</a></li>
-      </ul>
+      <a href="#what-is-tornado">What is tornado?</a>
     </li>
+    <li><a href="#built-with">Built With</a></li>
     <li>
-      <a href="#getting-started--başlangıç">Getting Started / Başlangıç</a>
+      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#installation--kurulum">Installation / Kurulum</a></li>
+        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage--kullanım">Usage / Kullanım</a></li>  
-    <li><a href="#roadmap--yol-haritası">Roadmap / Yol Haritası</a></li>
-    <li><a href="#contributing--katkı">Contributing / Katkı</a></li>
-    <li><a href="#license--lisans">License / Lisans</a></li>
-    <li><a href="#disclaimer--sorumluluk">Disclaimer / Sorumluluk</a></li>
+    <li><a href="#usage">Usage</a></li>  
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#disclaimer">Disclaimer</a></li>
   </ol>
 </details>
 
-> If you are having any os compatiblity issue, let me know. I will try to fix as soon as possible so let's explore the docs.
+> If you are having any operating system compatiblity issue, let me know. I will try to fix as soon as possible so let's explore the docs.
 
-> Herhangi bir işletim sistemi uyumsuzluğu varsa, bana bildirin. En kısa sürede düzeltmeye çalışacağım, hadi dökümanı inceleyelim.
+## What is tornado?
 
-## About the Project / Proje Hakkında
-Currently this project have that features.
+Tornado is implements tor network with metasploit-framework tool and msfvenom module, you can easily create hidden services for your localhost .onion domain without portforwarding. If you have experience different remote administration tools, probably you know you need forward port with virtual private network or ngrok but in this sense with tornado, the tor network offers the possibility of making services in a machine accessible as hidden services without portforwarding, by taking advantage of the anonymity it offers and thereby preventing the real location of the machine from being exposed.  
 
-    Create a hidden service                                   |   Dark web servisi oluşturma
-    Generate msfvenom payload with fully undetectable         |   Yakalanmayan msfvenom arka kapısı oluşturma
-    Hidden service becomes available outside tor network      |   Dark web servisini tor ağının dışına çıkarma
+tornado can do
++ create hidden service with tor network
++ generate cross platform msfvenom payload with fully undetectable shellcode execution not shikata_ga_nai things
++ hidden service becomes available outside tor network and ready to reverse shell connection
 
+be careful with tor2web even onion network, the only suicide mission is wearing blinders. tornado not secure from victim's point of view: the point of tor is that users can connect without being eavesdropped on and going through the clearnet with tor2web, even with https seriously cripples the efforts made to protect users.
 
-[![asciicast](https://asciinema.org/a/467317.svg)](https://asciinema.org/a/467317)
-
-This project, implements tor network with metasploit-framework tool and msfvenom module. You can easily create hidden services for your LHOST .onion domain without portforwarding. If you have experience different remote administration tools, probably you know you need forward port with VPN or NGROK but in this sense, the Tor network offers the possibility of making services in a machine accessible as hidden services without portforwarding, by taking advantage of the anonymity it offers and thereby preventing the real location of the machine from being exposed.  
-
-Bu proje, tor ağı ile birlikte metasploit-framework aracının msfvenom modülünü uygular. Kolayca port yönlendirme yapmadan LHOST için .onion dark web servisi oluşturabilirsiniz. Farklı uzaktan bağlantı araçları deneyiminiz varsa, büyük ihtimalle VPN kullanarak veya NGROK kullanarak port yönlendirme yapmanız gerektiğini biliyorsunuz ama bu proje ile tor ağının sunduğu anonimlikten yararlanarak port yönlendirmeden gizli servisteki hizmetlere erişme imkanı sunar böylece makinenin gerçek konumun açığa çıkmasını engeller.
-
-### Built With / Kullanılanlar
+### Built With
 
 * [Tor](https://www.torproject.org)
 * [Metasploit](https://www.metasploit.com/)
 * [Tor2Web](https://www.tor2web.org/)
-
-
-## Getting Started / Başlangıç
+    
+## Getting Started
 
 To get a local copy up and running follow these simple steps.  
 
-Kendi bilgisayarınızda çalıştırmak için bu basit adımları izleyin.
+### Installation
 
-### Installation / Kurulum
-
-1. Clone the repo | Projeyi indir.
+1. Clone the repo
    ```bash
-   git clone https://github.com/samet-g/tornado.git
+   $ git clone https://github.com/samet-g/tornado.git
    ```
-2. Install Python packages | Gerekli Python paketlerini yükle.
+2. Setup tornado with requirement packages.
    ```bash
-   pip3 install -r requirements.txt
+   $ sudo python3 setup.py install
    ```
-
-## Usage / Kullanım
-
-* Run with Python as Administrator 
-*   Yönetici olarak çalıştır
+3. Run it with sudo permissions.
    ```bash
-   python3 tornado.py
+   $ sudo tornado
    ```
 
-## Roadmap / Yol Haritası
+## Usage
 
-See the [open issues](https://github.com/samet-g/tornado/issues) for a list of proposed features  
-Listener should be integrity to Windows.  
+* Run tornado with sudo permissions & -start flag.
+   ```bash
+   $ sudo tornado -start
+   ```
 
-Sorunlar için [açık sorunları](https://github.com/samet-g/tornado/issues) kontrol edin.  
-Windows ile entegre listener olsa iyi olur.
+## Roadmap
 
-## Contributing / Katkı
+- [ ] Integrity to Windows operating system
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated** especially <a href="#roadmap--yol-haritası">Roadmap / Yol Haritası</a> check this to-do list.  
+## Contributing
 
-Katkılar, açık kaynak topluluğu için büyük nimettir özellikle <a href="#roadmap--yol-haritası">Roadmap / Yol Haritası</a> kısmındaki yapılacak-listesini kontrol edin.  
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated** especially <a href="#roadmap">Roadmap</a> check this to-do list.  
 
-1. Fork the Project | Projeyi forkla.
-2. Create your Feature Branch | Katkıda Bulun  
-`git checkout -b feature/YeniOzellik`
-3. Commit your Changes | Değişiklikleri Commitle  
-`git commit -m 'Add some YeniOzellik'`
-4. Push to the Branch | Değişikliğini Yolla  
-`git push origin feature/YeniOzellik`
-5. Open a Pull Request | Pull Request Aç
+1. Fork the Project
+2. Create your Feature Branch
+`git checkout -b feature/feature`
+3. Commit your Changes
+`git commit -m 'Add some feature'`
+4. Push to the Branch 
+`git push origin feature/feature`
+5. Open a Pull Request
 
-## License / Lisans
+## License
 
 Distributed under the GNU License.  
 See `LICENSE` for more information.
 
-GNU Lisansı altında dağıtılmaktadır.  
-Daha fazla bilgi için `LICENSE` bölümüne bakın.
-
-## Disclaimer / Sorumluluk
+## Disclaimer
 
 This tool is only for testing and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. I assume no liability and are not responsible for any misuse or damage caused by this tool and software.
 
-Bu proje sadece test etmek içindir ve yalnızca kesin onayın verildiği durumlarda kullanılabilir. Yasadışı amaçlar için kullanmayın! Geçerli tüm yerel, eyalet ve federal yasalara uymak son kullanıcının sorumluluğundadır. Ben bu projenin ve yazılımın neden olduğu herhangi bir yanlış kullanım veya hasardan sorumlu değilim.
 <!---/samogod/samet-g/-->
