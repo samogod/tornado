@@ -97,6 +97,7 @@ To get a local copy up and running follow these simple steps.
 ## Roadmap
 
 - [ ] Integrity to Windows operating system
+- [ ] Reverse shell without Tor2web - The working mechanism is compress malware.exe with tor expert bundle for windows operating systems.  
 
 ## Contributing
 
