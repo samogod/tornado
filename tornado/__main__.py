@@ -140,5 +140,3 @@ def main():
     else:
         print(banner)
         parser.print_help()
-
-
