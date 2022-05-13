@@ -78,9 +78,7 @@ class T0rnado():
                 self.shell(tor2web)
 
     def shell(host):
-        logger.input('What payload do you need: [tcp-https-http-ipv6_tcp]:')
-        payload = input()
-        payload = payload or "tcp"
+        payload = "http"
 
         logger.input('Enter arch: [x86--x64] [default: x64]')
         arch = input()
