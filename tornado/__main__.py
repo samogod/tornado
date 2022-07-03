@@ -77,7 +77,7 @@ class T0rnado():
                 tor2web = result.hostname + ".to"
                 self.shell(tor2web)
 
-    def shell(host):
+    def shell(self, host):
         payload = "http"
 
         logger.input('Enter arch: [x86--x64] [default: x64]')
