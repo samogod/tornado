@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name = "tornado",
-    version = "1.2",
+    version = "1.3.5",
     author = "samet-g",
     license = "MIT",
     keywords = ["Tornado", "Tor reverse shell", "reverse shell", "metasploit", "tor"],
