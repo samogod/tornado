@@ -1,14 +1,10 @@
 # running main functions
 
 import os
-import shutil
 import signal
 import subprocess
 import sys
-import time
 import argparse
-import stem.socket
-import stem.connection
 from stem.control import Controller
 from importlib.metadata import version
 from tornado.core import logger
@@ -110,7 +106,7 @@ class T0rnado():
             logger.goodt('ControlPort is ready.')
         except:
             logger.errort('ControlPort is not set')
-            logger.errort(f'Try to add ControlPort 9051 to Tor configuration file at /etc/tor/torrc with command:')
+            logger.errort('Try to add ControlPort 9051 to Tor configuration file at /etc/tor/torrc with command:')
             logger.warnt("""sudo bash -c 'echo "ControlPort 9051" >> /etc/tor/torrc'""")
             os.system('sudo service tor stop')
             os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
