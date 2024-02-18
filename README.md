@@ -13,7 +13,7 @@
     <br />
     fully undetectable reverse shell</a>
     ·
-    <a href="https://github.com/samet-g/niku">View Demo</a>
+    <a href="https://github.com/samet-g/tornado">View Demo</a>
     ·
     bulletproof anonymity</a>  
     
