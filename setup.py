@@ -9,10 +9,10 @@ def read(fname):
 setup(
     name = "tornado",
     version = "1.3.5",
-    author = "samet-g",
+    author = "samogod",
     license = "MIT",
     keywords = ["Tornado", "Tor reverse shell", "reverse shell", "metasploit", "tor"],
-    url = "https://github.com/samet-g/tornado",
+    url = "https://github.com/samogod/tornado",
     packages=find_packages(),
     classifiers=[
         "Intended Audience :: Developers",
