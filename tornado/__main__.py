@@ -64,7 +64,7 @@ class T0rnado():
             pass
             
     def configure(self):
-        password = 'allah'
+        password = 't0rnad0sam0g0d'
         logger.infot('ControlPort and HashedControlPassword is setting at /etc/tor/torrc file..')
         try:
             command = f"tor --hash-password {password}"
