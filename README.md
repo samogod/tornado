@@ -68,7 +68,7 @@ be careful with tor2web even onion network, the only suicide mission is wearing 
 * [Metasploit](https://www.metasploit.com/)
 * [Tor2Web](https://www.tor2web.org/)
 
-![image](https://github.com/samogod/tornado/assets/81412659/d2c34cde-34c1-4e08-ae28-cdb9db257a48)
+![image](https://github.com/samogod/tornado/assets/81412659/adecf89b-f5f0-4313-bde4-0162772eddf0)
 
 ## Getting Started
 
