@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-  <a href="https://github.com/samet-g/tornado">
+  <a href="https://github.com/samogod/tornado">
     <img src="images/twister.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -9,11 +9,11 @@
   <p align="center">
     anonymously reverse shell over onion network using hidden services without portfortwarding     
     <br />
-    <a href="https://github.com/samet-g/tornado"><strong>Explore the docs</strong></a>
+    <a href="https://github.com/samogod/tornado"><strong>Explore the docs</strong></a>
     <br />
     fully undetectable reverse shell</a>
     ·
-    <a href="https://github.com/samet-g/tornado">View Demo</a>
+    <a href="https://github.com/samogod/tornado">View Demo</a>
     ·
     bulletproof anonymity</a>  
     
@@ -78,7 +78,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```bash
-   $ git clone https://github.com/samet-g/tornado.git
+   $ git clone https://github.com/samogod/tornado.git
    ```
 2. Setup tornado with requirement packages.
    ```bash
@@ -123,4 +123,4 @@ See `LICENSE` for more information.
 
 This tool is only for testing and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. I assume no liability and are not responsible for any misuse or damage caused by this tool and software.
 
-<!---/samogod/samet-g/-->
+<!---/samogod/samet-gozet/-->
