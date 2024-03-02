@@ -16,21 +16,6 @@ class T0rnado():
         self.samogod = ':x samet-g :x'
         self.version = version('tornado')
 
-    '''def download_tor(self):
-        tor_url = 'https://www.torproject.org/dist/torbrowser/11.0.10/tor-win32-0.4.6.10.zip'
-        wget.download(tor_url, out='C:')
-        logger.infot('Tor is downloaded in C:\\ directory.')
-        try:
-            with zipfile.ZipFile('C:\\tor-win32-0.4.6.10.zip', 'r') as tor:
-                os.path.join("C:")
-                tor.extractall('C:\\')
-                logger.info('Tor is unzipped in C: disk.')
-        except:
-            logger.error('Tor is not unzipped in C: disk.\nRun tornado as administrator.')
-        pathlib.Path('C:\\tor-win32-0.4.6.10.zip').unlink()
-        shutil.rmtree('C:\\Data')
-        logger.info('Compressed tor file is gone.')'''
-
     def startup(self):
         print(banner)
         logger.info(f'Tornado Engine ({green}v{self.version}{reset}) is initialising.')
@@ -70,27 +55,14 @@ class T0rnado():
             command = f"tor --hash-password {password}"
             result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True)
             hashed_password = result.stdout.split("\n")[1]
-            #os.system('sudo service tor stop')
-            '''try:
-                os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
-            except:
-                pass'''
             with open("/etc/tor/torrc", "r") as file:
                 lines = file.readlines()
             with open("/etc/tor/torrc", "w") as file:
                 for line in lines:
                     if "ControlPort" not in line and "HashedControlPassword" not in line:
                         file.write(line)
-                # Yeni ControlPort ve HashedControlPassword satırlarını ekle
                 file.write(f"ControlPort 9051\nHashedControlPassword {hashed_password}\n")
-
-            #os.system('sudo service tor start')
         except:
-            logger.errort('ControlPort is not set')
-            logger.errort('Try to add ControlPort 9051 to Tor configuration file at /etc/tor/torrc with command:')
-            logger.warnt("""sudo bash -c 'echo "ControlPort 9051" >> /etc/tor/torrc'""")
-            #os.system('sudo service tor stop')
-            os.kill(int(subprocess.check_output(["pidof", "tor"])), signal.SIGTERM)
             sys.exit(1)
 
     def connection(self):
