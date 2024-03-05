@@ -60,7 +60,7 @@ tornado can do
 + generate cross platform msfvenom payload with fully undetectable shellcode execution not shikata_ga_nai things
 + hidden service becomes available outside tor network and ready to reverse shell connection
 
-be careful with tor2web even onion network, the only suicide mission is wearing blinders. tornado not secure from victim's point of view: the point of tor is that users can connect without being eavesdropped on and going through the clearnet with tor2web, even with https seriously cripples the efforts made to protect users.
+A word of caution regarding the use of Tor2Web and the onion network: disregarding security measures can be perilous. From the standpoint of a potential victim, Tornado might not be secure; Tor's primary aim is to enable anonymous connections free from surveillance. Utilizing Tor2Web to access services over the clearnet, even with the use of HTTPS, can significantly undermine the privacy and security efforts the Tor network strives to provide.
 
 ### Built With
 
