@@ -6,8 +6,7 @@ import random
 import string
 import sys
 import time
-import tornado.core.logger
-from tornado.core.logger import info, infot, warn, warnt, goodt, good, error, errort
+from . import logger
 
 def get_random_string():
     length = random.randint(5, 35)
