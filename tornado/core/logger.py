@@ -18,16 +18,16 @@ reset = Style.RESET_ALL
 Datetime = ("[" + cyan + time_now + reset + "]")
 
 banner = f"""
-          _____      U  ___ u    ____       _   _         _        ____       U  ___ u 
-         |_ " _|      \/"_ \/ U |  _"\ u   | \ |"|    U  /"\  u   |  _"\       \/"_ \/ 
-           | |        | | | |  \| |_) |/  <|  \| |>    \/ _ \/   /| | | |      | | | | 
-          /| |\   .-,_| |_| |   |  _ <    U| |\  |u    / ___ \   U| |_| |\ .-,_| |_| | 
-         u |_|U    \_)-\___/    |_| \_\    |_| \_|    /_/   \_\   |____/ u  \_)-\___/  
-         _// \\_        \\      //   \\_   ||   \\,-.  \\    >>    |||_          \\    
-        (__) (__)      (__)    (__)  (__)  (_")  (_/  (__)  (__)  (__)_)        (__)   v{version('tornado')}
+______      U  ___ u    ____       _   _         _        ____       U  ___ u 
+|_ " _|      \/"_ \/ U |  _"\ u   | \ |"|    U  /"\  u   |  _"\       \/"_ \/ 
+  | |        | | | |  \| |_) |/  <|  \| |>    \/ _ \/   /| | | |      | | | | 
+ /| |\   .-,_| |_| |   |  _ <    U| |\  |u    / ___ \   U| |_| |\ .-,_| |_| | 
+u |_|U    \_)-\___/    |_| \_\    |_| \_|    /_/   \_\   |____/ u  \_)-\___/  
+_// \\_        \\      //   \\_   ||   \\,-.  \\    >>    |||_          \\    
+(__) (__)      (__)    (__)  (__)  (_")  (_/  (__)  (__)  (__)_)        (__)   v{version('tornado')}
 
-                                        ({green}\x1B[3mBy samet-g / samogod\x1B[0m{reset})               
-       [{green}\x1B[3manonymously reverse shell over tor network using hidden services without portforwarding\x1B[0m{reset}]
+{green}\x1B[3manonymously reverse shell over tor network using hidden services without portforwarding\x1B[0m{reset}           
+                                {reset}\x1B[3msamet-g / samogod\x1B[0m{reset} 
 """
 
 def good(msg):
