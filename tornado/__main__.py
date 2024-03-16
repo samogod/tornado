@@ -75,7 +75,7 @@ class T0rnado():
             result = controller.create_hidden_service(path=hidden_service, port=80, target_port=1235)
             if result and result.hostname:
                 logger.good(f'Service is available at {result.hostname}')
-                tor2web = result.hostname + ".re"
+                tor2web = result.hostname + ".foundation"
                 self.shell(tor2web)
             else:
                 logger.error('Failed to create a hidden service. Please check Tor configuration and logs.')
