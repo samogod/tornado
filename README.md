@@ -75,7 +75,7 @@ A word of caution regarding the use of Tor2Web and the onion network: disregardi
 To get a local copy up and running follow these simple steps.  
 
 ### Installation
-
+#### Linux
 1. Clone the repo
    ```bash
    $ git clone https://github.com/samogod/tornado.git
@@ -89,16 +89,40 @@ To get a local copy up and running follow these simple steps.
    $ sudo tornado
    ```
 
-## Usage
+#### Windows
+1. Clone the repo
+  ```
+  git clone https://github.com/samogod/tornado.git
+  ```
 
+2. Setup tornado with requirement packages.
+  ```
+  python setup.py install
+  ```
+
+3. Run it
+
+  <!-- In Windows there is no need for this kind of things to have admin privileges-->
+  ```
+  python -m tornado
+  ```
+
+### Usage
+#### Linux
 * Run tornado with sudo permissions & -start flag.
    ```bash
    $ sudo tornado -start
    ```
 
+#### Windows
+* Run tornado with -start flag
+  ```
+  python -m tornado -start
+  ```
+
 ## Roadmap
 
-- [ ] Integrity to Windows operating system
+- [x] Integrity to Windows operating system
 - [ ] Reverse shell without Tor2web - The working mechanism is inject payload to tor expert bundle .exe with special torrc files.  
 
 ## Contributing
