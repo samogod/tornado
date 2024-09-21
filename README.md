@@ -122,7 +122,7 @@ To get a local copy up and running follow these simple steps.
 
 ## Roadmap
 
-- [x] Integrity to Windows operating system
+- [ ] Integrity to Windows operating system
 - [ ] Reverse shell without Tor2web - The working mechanism is inject payload to tor expert bundle .exe with special torrc files.  
 
 ## Contributing
