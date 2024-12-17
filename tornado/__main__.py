@@ -79,6 +79,7 @@ class T0rnado():
                 self.shell(tor2web)
             else:
                 logger.error('Failed to create a hidden service. Please check Tor configuration and logs.')
+                sys.exit(1)
 
     def shell(self, host):
         payload = "http"
