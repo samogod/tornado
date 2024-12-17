@@ -68,7 +68,7 @@ class T0rnado():
     def connection(self):
         logger.infot('Tor connection is starting..')
         with Controller.from_port(port=9051) as controller:
-            controller.authenticate(password='allah')
+            controller.authenticate(password='t0rnad0sam0g0d')
             logger.infot(f'Tor is running version {controller.get_version()}')
             logger.infot('Creating hidden service in hidden_service folder..')
             hidden_service = os.path.join(controller.get_conf('DataDirectory', os.getcwd()), 'hidden_service')
